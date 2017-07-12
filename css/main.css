@@ -1,10 +1,29 @@
-.game-square{
-    width: 100px;
+body {
+    margin: 0;
+}
+header, footer{
+    text-align: center;
     height: 100px;
-    background-color: yellow;
-    margin: 5px;
+    background-color: blue;
 }
 
+.game-square{
+    width: 10vh;
+    height: 10vh;
+    background-color: yellow;
+    margin: 3px;
+    border-radius: 15px;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 #game-board {
     display: flex;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-color: #a4afc1;
+    border-radius: 15px;
 }
