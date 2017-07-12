@@ -19,6 +19,7 @@ $(function () {
             for (var i = columnExecuteDrop.length - 1; i >= 0; i--) {
                 if (columnExecuteDrop[i] === 0) {
                     columnExecuteDrop[i] = GameBoard.turn;
+                    console.log(columnExecuteDrop);
                     GameBoard.handleColor();
                     GameBoard.testVictory();
                     return;
@@ -26,13 +27,36 @@ $(function () {
             }
         },
         handleColor: function () {
-            for (i = 0; i < GameBoard.board.length; i++) {
-                for (n = 0; n < GameBoard.board[i].length; n++) {
-                    if (GameBoard.board[i][n] === 1) {
-                        var $squareToEdit = $("[column=" + i + "][row=" + n + "]");
-                        $squareToEdit.css("background-color", "black");
+            //COME BACK TO THIS AND CLEAN IT UP NOW THAT YOU MADE IT WORK!
+            if (this.turn === 1) {
+                for (i = 0; i < GameBoard.board.length; i++) {
+                    for (n = 0; n < GameBoard.board[i].length; n++) {
+                        if (GameBoard.board[i][n] === this.turn) {
+                            var $squareToEdit = $("[column=" + i + "][row=" + n + "]");
+                            $squareToEdit.css("background-color", "black");
+                        }
                     }
                 }
+            } else if (this.turn === 2) {
+                for (i = 0; i < GameBoard.board.length; i++) {
+                    for (n = 0; n < GameBoard.board[i].length; n++) {
+                        if (GameBoard.board[i][n] === this.turn) {
+                            var $squareToEdit = $("[column=" + i + "][row=" + n + "]");
+                            $squareToEdit.css("background-color", "red");
+                        }
+                    }
+                }
+            }
+            //!!!CLEAN UP THE ABOVE FUNCTION!
+        },
+
+        changeTurns: function () {
+            if (this.turn === 1) {
+                console.log("Player 2's turn");
+                this.turn = 2;
+            } else {
+                console.log("Player 1's turn");
+                this.turn = 1;
             }
         },
 
@@ -45,16 +69,16 @@ $(function () {
 
     var Victory = {
         checkHorizontal: function (player) {
-            for (var i = 0; i < GameBoard.board.length-3; i++) {
-                for (var n = GameBoard.board[i].length - 1; n >= 0; n--){
-                    if(GameBoard.board[i][n] === player &&
-                    GameBoard.board[i+1][n] === player &&
-                    GameBoard.board[i+2][n] === player &&
-                    GameBoard.board[i+3][n] === player){
+            for (var i = 0; i < GameBoard.board.length - 3; i++) {
+                for (var n = GameBoard.board[i].length - 1; n >= 0; n--) {
+                    if (GameBoard.board[i][n] === player &&
+                        GameBoard.board[i + 1][n] === player &&
+                        GameBoard.board[i + 2][n] === player &&
+                        GameBoard.board[i + 3][n] === player) {
                         var $winner = $("<h1>");
                         $winner.html("Player " + player + " is the winner!!");
                         $("#game-board").prepend($winner);
-                    } 
+                    }
                 }
             }
         },
@@ -65,19 +89,21 @@ $(function () {
                         GameBoard.board[i][n - 1] === player &&
                         GameBoard.board[i][n - 2] === player &&
                         GameBoard.board[i][n - 3] === player) {
-                            var $winner = $("<h1>");
-                            $winner.html("Player " + player + " is the winner!!");
-                            $("#game-board").prepend($winner);
+                        var $winner = $("<h1>");
+                        $winner.html("Player " + player + " is the winner!!");
+                        $("#game-board").prepend($winner);
                     }
                 }
             }
         },
         checkDiagonal: function (player) { },
     }
+
     var ClickHander = {
         click: function (column) {
             var getTarget = column;
             GameBoard.dropChip(getTarget);
+            GameBoard.changeTurns();
         }
     };
 
