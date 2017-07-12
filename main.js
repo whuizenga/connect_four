@@ -78,6 +78,7 @@ $(function () {
                         var $winner = $("<h1>");
                         $winner.html("Player " + player + " is the winner!!");
                         $("#game-board").prepend($winner);
+                        return;
                     }
                 }
             }
@@ -92,12 +93,13 @@ $(function () {
                         var $winner = $("<h1>");
                         $winner.html("Player " + player + " is the winner!!");
                         $("#game-board").prepend($winner);
+                        return;
                     }
                 }
             }
         },
-        checkDiagonal: function (player) { 
-              for (var i = 0; i < GameBoard.board.length - 3; i++) {
+        checkDiagonal: function (player) {
+            for (var i = 0; i < GameBoard.board.length - 3; i++) {
                 for (var n = GameBoard.board[i].length - 1; n >= 3; n--) {
                     if (GameBoard.board[i][n] === player &&
                         GameBoard.board[i + 1][n - 1] === player &&
@@ -106,6 +108,20 @@ $(function () {
                         var $winner = $("<h1>");
                         $winner.html("Player " + player + " is the winner!!");
                         $("#game-board").prepend($winner);
+                        return;
+                    }
+                }
+            }
+            for (var i = GameBoard.board.length-1; i >= 3; i--) {
+                for (var n = GameBoard.board[i].length - 1; n >= 3; n--) {
+                    if (GameBoard.board[i][n] === player &&
+                        GameBoard.board[i - 1][n - 1] === player &&
+                        GameBoard.board[i - 2][n - 2] === player &&
+                        GameBoard.board[i - 3][n - 3] === player) {
+                        var $winner = $("<h1>");
+                        $winner.html("Player " + player + " is the winner!!");
+                        $("#game-board").prepend($winner);
+                        return;
                     }
                 }
             }
