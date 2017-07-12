@@ -4,3 +4,7 @@
     background-color: yellow;
     margin: 5px;
 }
+
+#game-board {
+    display: flex;
+}
