@@ -14,7 +14,7 @@ $(function () {
         turn: 1,
 
         dropChip: function (column) {
-            var columnToDrop = $(column).attr("column");
+            var columnToDrop = $(column).attr("Gcolumn");
             var columnExecuteDrop = GameBoard.board[columnToDrop];
             for( var i = columnExecuteDrop.length-1; i >= 0; i--){
                 if(columnExecuteDrop[i] === 0){
@@ -29,7 +29,9 @@ $(function () {
             for(i = 0; i < GameBoard.board.length; i++){
                 for(n = 0; n < GameBoard.board[i].length; n ++){
                     if(GameBoard.board[i][n] === 1){
-                        
+                        var $squareToEdit = $("[column="+i+"][row="+n+"]");
+                        console.log($squareToEdit);
+                        $squareToEdit.css("background-color", "black");
                     }
                 }
             }
@@ -53,7 +55,7 @@ $(function () {
                 $newSquare.attr("row", n);
                 $newColumn.append($newSquare);
             };
-            $newColumn.attr("column", i);
+            $newColumn.attr("Gcolumn", i);
             $newColumn.addClass("game-column");
             $newColumn.on("click", function (event) {
                 ClickHander.click(this);
