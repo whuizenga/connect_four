@@ -7,6 +7,9 @@ header, footer{
     background-color: blue;
 }
 
+.logo {
+    height: 100%;
+}
 .game-square{
     width: 10vh;
     height: 10vh;
@@ -26,4 +29,5 @@ header, footer{
     justify-content: center;
     background-color: #a4afc1;
     border-radius: 15px;
+    padding: 4px;
 }
