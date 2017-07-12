@@ -1,0 +1,6 @@
+.game-square{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    margin: 5px;
+}
