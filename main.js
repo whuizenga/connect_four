@@ -16,28 +16,58 @@ $(function () {
         dropChip: function (column) {
             var columnToDrop = $(column).attr("Gcolumn");
             var columnExecuteDrop = GameBoard.board[columnToDrop];
-            for( var i = columnExecuteDrop.length-1; i >= 0; i--){
-                if(columnExecuteDrop[i] === 0){
+            for (var i = columnExecuteDrop.length - 1; i >= 0; i--) {
+                if (columnExecuteDrop[i] === 0) {
                     columnExecuteDrop[i] = GameBoard.turn;
                     GameBoard.handleColor();
-                    console.log(GameBoard.board[columnToDrop]);
+                    GameBoard.testVictory();
                     return;
                 }
             }
         },
-        handleColor: function(){
-            for(i = 0; i < GameBoard.board.length; i++){
-                for(n = 0; n < GameBoard.board[i].length; n ++){
-                    if(GameBoard.board[i][n] === 1){
-                        var $squareToEdit = $("[column="+i+"][row="+n+"]");
-                        console.log($squareToEdit);
+        handleColor: function () {
+            for (i = 0; i < GameBoard.board.length; i++) {
+                for (n = 0; n < GameBoard.board[i].length; n++) {
+                    if (GameBoard.board[i][n] === 1) {
+                        var $squareToEdit = $("[column=" + i + "][row=" + n + "]");
                         $squareToEdit.css("background-color", "black");
                     }
                 }
             }
+        },
+
+        testVictory: function () {
+            Victory.checkHorizontal(this.turn);
+            Victory.checkVerticle(this.turn);
+            Victory.checkDiagonal(this.turn);
         }
     };
 
+    var Victory = {
+        checkHorizontal: function (player) {
+            // for (var i = 0; i < GameBoard.board.length; i++) {
+            //     for (var n = GameBoard.board[i].length - 1; n >= 0; n--){
+            //         if(GameBoard.board[i][n] === player &&
+                    
+            //     }
+            // }
+        },
+        checkVerticle: function (player) {
+            for (var i = 0; i < GameBoard.board.length; i++) {
+                for (var n = GameBoard.board[i].length - 1; n >= 3; n--) {
+                    if (GameBoard.board[i][n] === player &&
+                        GameBoard.board[i][n - 1] === player &&
+                        GameBoard.board[i][n - 2] === player &&
+                        GameBoard.board[i][n - 3] === player) {
+                            var $winner = $("<h1>");
+                            $winner.html("Player " + player + " is the winner!!");
+                            $("#game-board").prepend($winner);
+                    }
+                }
+            }
+        },
+        checkDiagonal: function (player) { },
+    }
     var ClickHander = {
         click: function (column) {
             var getTarget = column;
