@@ -1,20 +1,38 @@
 $(function () {
     var GameBoard = {
         board: [
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]
         ],
 
         //Designates which player is taking a turn. 1 if player 1 turn, 2 if player 2 turn.
         turn: 1,
-        
-        dropChip: function(column){
-            var columnToDrop = column.data("column");
-            console.log(columnToDrop);
+
+        dropChip: function (column) {
+            var columnToDrop = $(column).attr("column");
+            var columnExecuteDrop = GameBoard.board[columnToDrop];
+            for( var i = columnExecuteDrop.length-1; i >= 0; i--){
+                if(columnExecuteDrop[i] === 0){
+                    columnExecuteDrop[i] = GameBoard.turn;
+                    GameBoard.handleColor();
+                    console.log(GameBoard.board[columnToDrop]);
+                    return;
+                }
+            }
+        },
+        handleColor: function(){
+            for(i = 0; i < GameBoard.board.length; i++){
+                for(n = 0; n < GameBoard.board[i].length; n ++){
+                    if(GameBoard.board[i][n] === 1){
+                        
+                    }
+                }
+            }
         }
     };
 
@@ -31,11 +49,11 @@ $(function () {
             for (var n = 0; n < 6; n++) {
                 var $newSquare = $("<div>");
                 $newSquare.addClass("game-square");
-                $newSquare.data("column",i);
-                $newSquare.data("row", n);
+                $newSquare.attr("column", i);
+                $newSquare.attr("row", n);
                 $newColumn.append($newSquare);
             };
-            $newColumn.data("column",i);
+            $newColumn.attr("column", i);
             $newColumn.addClass("game-column");
             $newColumn.on("click", function (event) {
                 ClickHander.click(this);
