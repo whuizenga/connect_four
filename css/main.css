@@ -3,12 +3,15 @@ body {
 }
 header, footer{
     text-align: center;
-    height: 100px;
+    height: 120px;
     background-color: blue;
 }
 
 .player{
     margin-left: 12px;
+    margin-right: 12px;
+    border-radius: 10px;
+    padding: 4px;
 }
 .logo {
     height: 100%;
@@ -39,7 +42,6 @@ header, footer{
     border-radius: 15px;
 }
 #game-board {
-    display: flex;
     margin: 0 auto;
     display: flex;
     justify-content: center;

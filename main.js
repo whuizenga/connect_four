@@ -20,7 +20,6 @@ $(function () {
             for (var i = columnExecuteDrop.length - 1; i >= 0; i--) {
                 if (columnExecuteDrop[i] === 0) {
                     columnExecuteDrop[i] = GameBoard.turn;
-                    console.log(columnExecuteDrop);
                     GameBoard.handleColor();
                     GameBoard.testVictory();
                     return;
@@ -53,10 +52,8 @@ $(function () {
 
         changeTurns: function () {
             if (this.turn === 1) {
-                console.log("Player 2's turn");
                 this.turn = 2;
             } else {
-                console.log("Player 1's turn");
                 this.turn = 1;
             }
             ClickHander.playerDisplay(this.turn);
@@ -123,8 +120,10 @@ $(function () {
         callVictory(player){
             var $winner = $("<h1>");
             $winner.html("Player " + player + " is the winner!!");
+            $winner.addClass("player");
             $(".game-info").append($winner);
             GameBoard.gameComplete = true;
+
         }
     }
 
@@ -144,6 +143,9 @@ $(function () {
             if(turn === 2){
                 $(".player").css("border", "none");
                 $(".second-player").css("border", "3px solid yellow");
+            }
+            if(GameBoard.gameComplete){
+                $(".player").css("border", "none");
             }
         }
     };
