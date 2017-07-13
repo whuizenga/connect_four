@@ -58,6 +58,7 @@ $(function () {
                 console.log("Player 1's turn");
                 this.turn = 1;
             }
+            ClickHander.playerDisplay(this.turn);
         },
 
         testVictory: function () {
@@ -75,9 +76,7 @@ $(function () {
                         GameBoard.board[i + 1][n] === player &&
                         GameBoard.board[i + 2][n] === player &&
                         GameBoard.board[i + 3][n] === player) {
-                        var $winner = $("<h1>");
-                        $winner.html("Player " + player + " is the winner!!");
-                        $("#game-board").prepend($winner);
+                        this.callVictory(player);
                         return;
                     }
                 }
@@ -90,9 +89,7 @@ $(function () {
                         GameBoard.board[i][n - 1] === player &&
                         GameBoard.board[i][n - 2] === player &&
                         GameBoard.board[i][n - 3] === player) {
-                        var $winner = $("<h1>");
-                        $winner.html("Player " + player + " is the winner!!");
-                        $("#game-board").prepend($winner);
+                        this.callVictory(player);
                         return;
                     }
                 }
@@ -105,9 +102,7 @@ $(function () {
                         GameBoard.board[i + 1][n - 1] === player &&
                         GameBoard.board[i + 2][n - 2] === player &&
                         GameBoard.board[i + 3][n - 3] === player) {
-                        var $winner = $("<h1>");
-                        $winner.html("Player " + player + " is the winner!!");
-                        $("#game-board").prepend($winner);
+                        this.callVictory(player);
                         return;
                     }
                 }
@@ -118,14 +113,17 @@ $(function () {
                         GameBoard.board[i - 1][n - 1] === player &&
                         GameBoard.board[i - 2][n - 2] === player &&
                         GameBoard.board[i - 3][n - 3] === player) {
-                        var $winner = $("<h1>");
-                        $winner.html("Player " + player + " is the winner!!");
-                        $("#game-board").prepend($winner);
+                        this.callVictory(player);
                         return;
                     }
                 }
             }
         },
+        callVictory(player){
+            var $winner = $("<h1>");
+            $winner.html("Player " + player + " is the winner!!");
+            $(".game-info").append($winner);
+        }
     }
 
     var ClickHander = {
@@ -133,6 +131,16 @@ $(function () {
             var getTarget = column;
             GameBoard.dropChip(getTarget);
             GameBoard.changeTurns();
+        },
+        playerDisplay: function (turn){
+            if(turn === 1){
+                $(".player").css("border", "none");
+                $(".first-player").css("border", "3px solid yellow");
+            }
+            if(turn === 2){
+                $(".player").css("border", "none");
+                $(".second-player").css("border", "3px solid yellow");
+            }
         }
     };
 
