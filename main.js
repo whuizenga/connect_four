@@ -255,9 +255,9 @@ $(function () {
             }
             if (index <= SimonController.arrayThePlayerMustExecute.length) {
                 $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.3");
-                // setTimeout(function(){
-                //     $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
-                // }, SimonController.speed-100);
+                setTimeout(function(){
+                    $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
+                }, SimonController.speed-100);
                 setTimeout(function () {
                     index += 1;
                     SimonController.displayColors(index);
