@@ -240,7 +240,6 @@ $(function () {
             SimonController.simonSays();
         },
         simonSays: function () {
-            //Add random color to the array that must be executed
             var randomColor = SimonController.colors[Math.floor(Math.random() * SimonController.colors.length)];
             SimonController.arrayThePlayerMustExecute.push(randomColor);
             SimonController.arrayThePlayerHasExecuted.splice(0, SimonController.arrayThePlayerHasExecuted.length);
@@ -275,25 +274,21 @@ $(function () {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("green");
                     SimonController.checkArrays();
-                    //console.log(SimonController.arrayThePlayerHasExecuted);
                  } });
                 $(".simon-red").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("red");
                     SimonController.checkArrays();
-                    //console.log(SimonController.arrayThePlayerHasExecuted);
                  } });
                 $(".simon-yellow").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("yellow");
                     SimonController.checkArrays();
-                    //console.log(SimonController.arrayThePlayerHasExecuted);
                  } });
                 $(".simon-blue").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("blue");
                     SimonController.checkArrays();
-                    //console.log(SimonController.arrayThePlayerHasExecuted);
                  } });
             }
         },
