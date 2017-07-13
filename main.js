@@ -154,7 +154,22 @@ $(function () {
             if(GameBoard.gameComplete){
                 $(".player").css("border", "none");
             }
+        },
+        reset: function(reset) {
+            $("#game-board").empty();
+            $(".game-info").empty();
+            GameBoard.gameComplete = false;
+            GameBoard.board = [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]];
+            createBoard();
         }
+
     };
 
     var createBoard = function () {
@@ -184,6 +199,8 @@ $(function () {
             });
             $("#game-board").append($newColumn);
         };
+
+        ClickHander.playerDisplay(GameBoard.turn);
     };
 
     createBoard();
