@@ -47,7 +47,20 @@ h2 {
     border-radius: 15px;
     visibility: hidden;
 }
-
+.game-selection{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 80vw;
+}
+.game {
+    height: 40vh;
+}
+.select-connect4 {
+    width: 40vw;
+    height: 100%;
+    margin: auto 0;
+}
 .reset-button {
     font-size: 24px;
     text-align: center;
