@@ -12,6 +12,7 @@ $(function () {
 
         //Designates which player is taking a turn. 1 if player 1 turn, 2 if player 2 turn.
         turn: 1,
+        gameComplete: false,
 
         dropChip: function (column) {
             var columnToDrop = $(column).attr("Gcolumn");
@@ -123,14 +124,17 @@ $(function () {
             var $winner = $("<h1>");
             $winner.html("Player " + player + " is the winner!!");
             $(".game-info").append($winner);
+            GameBoard.gameComplete = true;
         }
     }
 
     var ClickHander = {
         click: function (column) {
+            if(!GameBoard.gameComplete){
             var getTarget = column;
             GameBoard.dropChip(getTarget);
             GameBoard.changeTurns();
+            }
         },
         playerDisplay: function (turn){
             if(turn === 1){
