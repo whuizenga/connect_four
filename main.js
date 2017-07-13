@@ -234,26 +234,81 @@ $(function () {
         arrayThePlayerHasExecuted: [],
         speed: 1000,
         simonIsSaying: false,
-        startGame: function(){
+        startGame: function () {
             console.log("begin the game!!");
-            this.simonIsSaying = true;
-            this.simonSays();
+            SimonController.simonIsSaying = true;
+            SimonController.simonSays();
         },
-        simonSays: function(){
+        simonSays: function () {
             //Add random color to the array that must be executed
-            var randomColor = this.colors[Math.floor(Math.random()*this.colors.length)];
-            this.arrayThePlayerMustExecute.push(randomColor);
-            console.log(randomColor);
-            console.log(this.arrayThePlayerMustExecute);
-            //call a function that will lightup the color
-            this.displayColors(0);
-            //wait x amount of time before displaying next color
-            //turn simonissaying to false
-            //await user to try to match the array
+            var randomColor = SimonController.colors[Math.floor(Math.random() * SimonController.colors.length)];
+            SimonController.arrayThePlayerMustExecute.push(randomColor);
+            SimonController.arrayThePlayerHasExecuted.splice(0, SimonController.arrayThePlayerHasExecuted.length);
+            console.log(SimonController.arrayThePlayerMustExecute);
+            console.log(SimonController.arrayThePlayerHasExecuted);
+            SimonController.displayColors(0);
         },
-        displayColors: function(index){
-            if(index <= this.arrayThePlayerMustExecute.length){
-                $(".simon-"+this.arrayThePlayerMustExecute[index]).css("opacity","0.5");
+        displayColors: function (round) {
+            var index = round;
+            if (index > 0) {
+                $(".simon-" + SimonController.arrayThePlayerMustExecute[index - 1]).css("opacity", "1");
+            }
+            if (index <= SimonController.arrayThePlayerMustExecute.length) {
+                $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.3");
+                // setTimeout(function(){
+                //     $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
+                // }, SimonController.speed-100);
+                setTimeout(function () {
+                    index += 1;
+                    SimonController.displayColors(index);
+                    return;
+                }, SimonController.speed);
+            } else {
+                SimonController.simonIsSaying = false;
+                console.log("It is now time for the player to try to repeat the segment")
+                return;
+            }
+        },
+        playerTurn: function () {
+            if (!SimonController.simonIsSaying) {
+                $(".simon-green").on("click", function (event) {
+                    if (!SimonController.simonIsSaying) {
+                    SimonController.arrayThePlayerHasExecuted.push("green");
+                    SimonController.checkArrays();
+                    //console.log(SimonController.arrayThePlayerHasExecuted);
+                 } });
+                $(".simon-red").on("click", function (event) {
+                    if (!SimonController.simonIsSaying) {
+                    SimonController.arrayThePlayerHasExecuted.push("red");
+                    SimonController.checkArrays();
+                    //console.log(SimonController.arrayThePlayerHasExecuted);
+                 } });
+                $(".simon-yellow").on("click", function (event) {
+                    if (!SimonController.simonIsSaying) {
+                    SimonController.arrayThePlayerHasExecuted.push("yellow");
+                    SimonController.checkArrays();
+                    //console.log(SimonController.arrayThePlayerHasExecuted);
+                 } });
+                $(".simon-blue").on("click", function (event) {
+                    if (!SimonController.simonIsSaying) {
+                    SimonController.arrayThePlayerHasExecuted.push("blue");
+                    SimonController.checkArrays();
+                    //console.log(SimonController.arrayThePlayerHasExecuted);
+                 } });
+            }
+        },
+        checkArrays: function(){
+            if(SimonController.arrayThePlayerHasExecuted > SimonController.arrayThePlayerMustExecute){
+                console.log("HOW DID YOU GET HERE");
+            }
+            for(var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++){
+                if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
+                    console.log("DEFEATED!!");
+                    return;
+                }
+            }
+            if(SimonController.arrayThePlayerHasExecuted.length === SimonController.arrayThePlayerMustExecute.length){
+                SimonController.simonSays();
             }
         }
     }
@@ -267,7 +322,7 @@ $(function () {
         $newGameButton.addClass("reset-button");
         $newGameButton.text("Click Here to Start");
         $(".game-info").append($newGameButton);
-        $newGameButton.on("click", function(event){
+        $newGameButton.on("click", function (event) {
             SimonController.startGame();
         });
 
@@ -281,5 +336,6 @@ $(function () {
         $("#game-board").append($simonDiv);
         $simonDiv.css("flex-wrap", "wrap");
         $(".logo").attr("src", "images/simonlogo.jpg");
+        SimonController.playerTurn();
     };
 });
