@@ -183,6 +183,11 @@ $(function () {
         $playerTwo.text("Player 2");
         $(".game-info").append($playerTwo);
 
+        var $gameRules = $("<p>");
+        $gameRules.text("Objective: Be the first player to create a line of 4 square either horizontally, vertically, or diagonally.");
+        $gameRules.addClass("player");
+        $(".game-info").append($gameRules);
+
         for (var i = 0; i < 7; i++) {
             var $newColumn = $("<div>");
             for (var n = 0; n < 6; n++) {
