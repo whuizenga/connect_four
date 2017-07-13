@@ -62,8 +62,8 @@ h2 {
     margin: auto 0;
 }
 .simon-div{
-    height: 200px;
-    width: 200px;
+    height: 30vh;
+    width: 30vh;
     border-radius: 200px;
 }
 .reset-button {

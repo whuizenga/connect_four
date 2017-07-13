@@ -234,11 +234,15 @@ var SimonController = {
 var createSimon = function(){
     var colors = ["green", "red", "yellow","blue"];
     ClickHandler.gameVisibility();
+    $simonDiv = $("<div>");
+    $simonDiv.addClass("master-simon");
     for(i = 0; i < 4; i++){
         $newDiv = $("<div>");
         $newDiv.addClass("simon-div");
         $newDiv.css("background-color", colors[i]);
-        $("#game-board").append($newDiv);
+        $simonDiv.append($newDiv);
     }
+    $("#game-board").append($simonDiv);
+    $simonDiv.css("flex-wrap","wrap");
 };
 });
