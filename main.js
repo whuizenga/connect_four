@@ -151,6 +151,22 @@ $(function () {
     };
 
     var createBoard = function () {
+        var $playerOne = $("<h1>");
+        $playerOne.addClass("first-player player");
+        $playerOne.text("Player 1");
+        $(".game-info").append($playerOne);
+
+        var $playerTwo = $("<h1>");
+        $playerTwo.addClass("second-player player");
+        $playerTwo.text("Player 2");
+        $(".game-info").append($playerTwo);
+
+
+
+
+
+
+
         for (var i = 0; i < 7; i++) {
             var $newColumn = $("<div>");
             for (var n = 0; n < 6; n++) {
