@@ -232,6 +232,30 @@ $(function () {
         colors: ["green", "red", "yellow", "blue"],
         arrayThePlayerMustExecute: [],
         arrayThePlayerHasExecuted: [],
+        speed: 1000,
+        simonIsSaying: false,
+        startGame: function(){
+            console.log("begin the game!!");
+            this.simonIsSaying = true;
+            this.simonSays();
+        },
+        simonSays: function(){
+            //Add random color to the array that must be executed
+            var randomColor = this.colors[Math.floor(Math.random()*this.colors.length)];
+            this.arrayThePlayerMustExecute.push(randomColor);
+            console.log(randomColor);
+            console.log(this.arrayThePlayerMustExecute);
+            //call a function that will lightup the color
+            this.displayColors(0);
+            //wait x amount of time before displaying next color
+            //turn simonissaying to false
+            //await user to try to match the array
+        },
+        displayColors: function(index){
+            if(index <= this.arrayThePlayerMustExecute.length){
+                $(".simon-"+this.arrayThePlayerMustExecute[index]).css("opacity","0.5");
+            }
+        }
     }
 
     var createSimon = function () {
@@ -239,6 +263,14 @@ $(function () {
         ClickHandler.gameVisibility();
         $simonDiv = $("<div>");
         $simonDiv.addClass("master-simon");
+        var $newGameButton = $("<div>");
+        $newGameButton.addClass("reset-button");
+        $newGameButton.text("Click Here to Start");
+        $(".game-info").append($newGameButton);
+        $newGameButton.on("click", function(event){
+            SimonController.startGame();
+        });
+
         for (i = 0; i < 4; i++) {
             $newDiv = $("<div>");
             $newDiv.addClass("simon-div");
