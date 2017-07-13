@@ -105,7 +105,7 @@ $(function () {
                     }
                 }
             }
-            for (var i = GameBoard.board.length-1; i >= 3; i--) {
+            for (var i = GameBoard.board.length - 1; i >= 3; i--) {
                 for (var n = GameBoard.board[i].length - 1; n >= 3; n--) {
                     if (GameBoard.board[i][n] === player &&
                         GameBoard.board[i - 1][n - 1] === player &&
@@ -117,7 +117,7 @@ $(function () {
                 }
             }
         },
-        callVictory(player){
+        callVictory(player) {
             var $winner = $("<h1>");
             $winner.html("Player " + player + " is the winner!!");
             $winner.addClass("player");
@@ -136,45 +136,45 @@ $(function () {
 
     var ClickHandler = {
         click: function (column) {
-            if(!GameBoard.gameComplete){
-            var getTarget = column;
-            GameBoard.dropChip(getTarget);
-            GameBoard.changeTurns();
+            if (!GameBoard.gameComplete) {
+                var getTarget = column;
+                GameBoard.dropChip(getTarget);
+                GameBoard.changeTurns();
             }
         },
-        playerDisplay: function (turn){
-            if(turn === 1){
+        playerDisplay: function (turn) {
+            if (turn === 1) {
                 $(".player").css("border", "none");
                 $(".first-player").css("border", "3px solid yellow");
             }
-            if(turn === 2){
+            if (turn === 2) {
                 $(".player").css("border", "none");
                 $(".second-player").css("border", "3px solid yellow");
             }
-            if(GameBoard.gameComplete){
+            if (GameBoard.gameComplete) {
                 $(".player").css("border", "none");
             }
         },
-        reset: function(reset) {
+        reset: function (reset) {
             $("#game-board").empty();
             $(".game-info").empty();
             GameBoard.gameComplete = false;
             GameBoard.board = [
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0]];
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0]];
             createBoard();
         },
-        gameVisibility: function() {
+        gameVisibility: function () {
             $("#game-board").css("visibility", "visible");
             $(".game-info").css("visibility", "visible");
             $(".logo").css("visibility", "visible");
-            $(".game").css("display","none");
-            $(".welcome").css("display","none");
+            $(".game").css("display", "none");
+            $(".welcome").css("display", "none");
         }
     };
 
@@ -215,11 +215,11 @@ $(function () {
         ClickHandler.playerDisplay(GameBoard.turn);
     };
 
-    var startHere = function(){
-        $(".select-connect4").on("click", function(){
+    var startHere = function () {
+        $(".select-connect4").on("click", function () {
             createBoard();
         });
-        $(".select-simon").on("click", function(){
+        $(".select-simon").on("click", function () {
             createSimon();
         });
     };
@@ -228,21 +228,26 @@ $(function () {
 
     //----|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-PUT THE SIMON STUFF UNDER HERE -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|----
 
-var SimonController = {
-}
-
-var createSimon = function(){
-    var colors = ["green", "red", "yellow","blue"];
-    ClickHandler.gameVisibility();
-    $simonDiv = $("<div>");
-    $simonDiv.addClass("master-simon");
-    for(i = 0; i < 4; i++){
-        $newDiv = $("<div>");
-        $newDiv.addClass("simon-div");
-        $newDiv.css("background-color", colors[i]);
-        $simonDiv.append($newDiv);
+    var SimonController = {
+        colors: ["green", "red", "yellow", "blue"],
+        arrayThePlayerMustExecute: [],
+        arrayThePlayerHasExecuted: [],
     }
-    $("#game-board").append($simonDiv);
-    $simonDiv.css("flex-wrap","wrap");
-};
+
+    var createSimon = function () {
+        var colors = ["green", "red", "yellow", "blue"];
+        ClickHandler.gameVisibility();
+        $simonDiv = $("<div>");
+        $simonDiv.addClass("master-simon");
+        for (i = 0; i < 4; i++) {
+            $newDiv = $("<div>");
+            $newDiv.addClass("simon-div");
+            $newDiv.addClass("simon-" + colors[i]);
+            $newDiv.css("background-color", colors[i]);
+            $simonDiv.append($newDiv);
+        }
+        $("#game-board").append($simonDiv);
+        $simonDiv.css("flex-wrap", "wrap");
+        $(".logo").attr("src", "images/simonlogo.jpg");
+    };
 });

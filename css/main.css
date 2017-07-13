@@ -64,7 +64,25 @@ h2 {
 .simon-div{
     height: 30vh;
     width: 30vh;
-    border-radius: 200px;
+}
+.simon-green{
+    border-top-left-radius: 60vh;
+}
+.simon-red{
+    border-top-right-radius: 60vh;
+}
+.simon-yellow{
+    border-bottom-left-radius: 60vh;
+}
+.simon-blue{
+    border-bottom-right-radius: 60vh;
+}
+.master-simon{
+    height: 60vh;
+    width: 60vh;
+    border: 5px solid black;
+    border-radius: 60vh;
+    display:flex;
 }
 .reset-button {
     font-size: 24px;
