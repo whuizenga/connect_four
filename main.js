@@ -124,6 +124,13 @@ $(function () {
             $(".game-info").append($winner);
             GameBoard.gameComplete = true;
 
+            var $resetGame = $("<div>");
+            $resetGame.addClass("reset-button");
+            $resetGame.text("Reset");
+            $resetGame.on("click", function (event) {
+                ClickHander.reset(this);
+            });
+            $(".game-info").append($resetGame);
         }
     }
 
@@ -160,12 +167,6 @@ $(function () {
         $playerTwo.addClass("second-player player");
         $playerTwo.text("Player 2");
         $(".game-info").append($playerTwo);
-
-
-
-
-
-
 
         for (var i = 0; i < 7; i++) {
             var $newColumn = $("<div>");

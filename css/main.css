@@ -41,6 +41,21 @@ header, footer{
     background-color: #a4afc1;
     border-radius: 15px;
 }
+
+.reset-button {
+    font-size: 24px;
+    text-align: center;
+    width: 45%;
+    background-color: #34A853;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 3px solid #13772e;
+}
+
+.reset-button:hover{
+    background-color: #47c168;
+    border: 3px solid #34A853;
+}
 #game-board {
     margin: 0 auto;
     display: flex;
