@@ -56,7 +56,7 @@ $(function () {
             } else {
                 this.turn = 1;
             }
-            ClickHander.playerDisplay(this.turn);
+            ClickHandler.playerDisplay(this.turn);
         },
 
         testVictory: function () {
@@ -128,13 +128,13 @@ $(function () {
             $resetGame.addClass("reset-button");
             $resetGame.text("Reset");
             $resetGame.on("click", function (event) {
-                ClickHander.reset(this);
+                ClickHandler.reset(this);
             });
             $(".game-info").append($resetGame);
         }
     }
 
-    var ClickHander = {
+    var ClickHandler = {
         click: function (column) {
             if(!GameBoard.gameComplete){
             var getTarget = column;
@@ -168,8 +168,14 @@ $(function () {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0]];
             createBoard();
+        },
+        gameVisibility: function() {
+            $("#game-board").css("visibility", "visible");
+            $(".game-info").css("visibility", "visible");
+            $(".logo").css("visibility", "visible");
+            $(".game").css("display","none");
+            $(".welcome").css("display","none");
         }
-
     };
 
     var createBoard = function () {
@@ -200,26 +206,39 @@ $(function () {
             $newColumn.attr("Gcolumn", i);
             $newColumn.addClass("game-column");
             $newColumn.on("click", function (event) {
-                ClickHander.click(this);
+                ClickHandler.click(this);
             });
             $("#game-board").append($newColumn);
         };
 
-        $("#game-board").css("visibility", "visible");
-        $(".game-info").css("visibility", "visible");
-        $(".logo").css("visibility", "visible");
-        $(".game").css("display","none");
-        $(".welcome").css("display","none");
-        ClickHander.playerDisplay(GameBoard.turn);
+        ClickHandler.gameVisibility();
+        ClickHandler.playerDisplay(GameBoard.turn);
     };
-
-    // createBoard();
 
     var startHere = function(){
         $(".select-connect4").on("click", function(){
             createBoard();
         });
+        $(".select-simon").on("click", function(){
+            createSimon();
+        });
     };
 
     startHere();
+
+    //----|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-PUT THE SIMON STUFF UNDER HERE -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|----
+
+var SimonController = {
+}
+
+var createSimon = function(){
+    var colors = ["green", "red", "yellow","blue"];
+    ClickHandler.gameVisibility();
+    for(i = 0; i < 4; i++){
+        $newDiv = $("<div>");
+        $newDiv.addClass("simon-div");
+        $newDiv.css("background-color", colors[i]);
+        $("#game-board").append($newDiv);
+    }
+};
 });
