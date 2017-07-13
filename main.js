@@ -205,8 +205,21 @@ $(function () {
             $("#game-board").append($newColumn);
         };
 
+        $("#game-board").css("visibility", "visible");
+        $(".game-info").css("visibility", "visible");
+        $(".logo").css("visibility", "visible");
+        $(".select-connect4").css("display","none");
+        $(".welcome").css("display","none");
         ClickHander.playerDisplay(GameBoard.turn);
     };
 
-    createBoard();
+    // createBoard();
+
+    var startHere = function(){
+        $(".select-connect4").on("click", function(){
+            createBoard();
+        });
+    };
+
+    startHere();
 });

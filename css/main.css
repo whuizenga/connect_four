@@ -6,7 +6,10 @@ header, footer{
     height: 120px;
     background-color: blue;
 }
-
+h2 {
+    font-size: 28px;
+    margin-top: 40px;
+}
 .player{
     margin-left: 12px;
     margin-right: 12px;
@@ -15,6 +18,7 @@ header, footer{
 }
 .logo {
     height: 100%;
+    visibility: hidden;
 }
 .game-square{
     width: 10vh;
@@ -27,6 +31,7 @@ header, footer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 100vh;
 }
 .game-container {
     width: 80%;
@@ -40,6 +45,7 @@ header, footer{
     min-width: 150px;
     background-color: #a4afc1;
     border-radius: 15px;
+    visibility: hidden;
 }
 
 .reset-button {
@@ -63,4 +69,5 @@ header, footer{
     background-color: #a4afc1;
     border-radius: 15px;
     padding: 4px;
+    visibility: hidden;
 }
