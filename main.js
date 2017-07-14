@@ -264,8 +264,12 @@ $(function () {
                     return;
                 }, SimonController.speed);
             } else {
+                $(".game-info").empty();
                 SimonController.simonIsSaying = false;
                 console.log("It is now time for the player to try to repeat the segment")
+                    var $newMessage = $("<h1>");
+                    $newMessage.text("Now repeat the sequence.");
+                    $(".game-info").append($newMessage);
                 return;
             }
         },
@@ -312,13 +316,20 @@ $(function () {
         checkArrays: function(){
             for(var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++){
                 if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
-                    console.log("DEFEATED!!");
+                    var $newLostMessage = $("<h1>");
+                    $newLostMessage.text("Wrong, you lose!");
+                    $(".game-info").append($newLostMessage);
                     return;
                 }
             }
             if(SimonController.arrayThePlayerHasExecuted.length === SimonController.arrayThePlayerMustExecute.length){
                 setTimeout(function(){
                     SimonController.simonSays();}, 500);
+                    $(".game-info").empty();
+                    var $newMessage = $("<h1>");
+                    $newMessage.text("Simon says..");
+                    $(".game-info").append($newMessage);
+
             }
         }
     }
@@ -330,7 +341,7 @@ $(function () {
         $simonDiv.addClass("master-simon");
         var $newGameButton = $("<div>");
         $newGameButton.addClass("reset-button");
-        $newGameButton.text("Click Here to Start");
+        $newGameButton.text("Start");
         $(".game-info").append($newGameButton);
         $newGameButton.on("click", function (event) {
             SimonController.startGame();
