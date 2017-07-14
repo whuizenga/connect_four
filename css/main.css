@@ -6,6 +6,9 @@ header, footer{
     height: 120px;
     background-color: blue;
 }
+h1{
+    font-size: 26px;
+}
 h2 {
     font-size: 28px;
     margin-top: 40px;
@@ -34,7 +37,7 @@ h2 {
     min-height: 100vh;
 }
 .game-container {
-    width: 80%;
+    width: 60%;
     flex-direction: row;
     justify-content: center;
     margin: 8px auto;
@@ -55,7 +58,6 @@ h2 {
 .game {
     width: 50vw;
     height: auto;
-    /*margin: 0 auto;*/
 }
 .select-connect4 {
     width: 40vw;
