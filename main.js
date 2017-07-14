@@ -218,9 +218,11 @@ $(function () {
     var startHere = function () {
         $(".select-connect4").on("click", function () {
             createBoard();
+            $(".game-container").css("display","flex");
         });
         $(".select-simon").on("click", function () {
             createSimon();
+            $(".game-container").css("display", "flex");
         });
     };
 
@@ -343,7 +345,7 @@ $(function () {
         }
         $("#game-board").append($simonDiv);
         $simonDiv.css("flex-wrap", "wrap");
-        $(".logo").attr("src", "images/simonlogo.jpg");
+        $(".logo").attr("src", "images/simonlogo2.png");
         SimonController.playerTurn();
     };
 });

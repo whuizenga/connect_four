@@ -35,10 +35,10 @@ h2 {
 }
 .game-container {
     width: 80%;
-    display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 8px auto;
+    display: none;
 }
 .game-info{
     width: 20vw;
@@ -51,10 +51,11 @@ h2 {
     display: flex;
     justify-content: center;
     align-content: center;
-    width: 80vw;
 }
 .game {
-    height: 40vh;
+    width: 40vw;
+    height: 100%;
+    margin: 0 auto;
 }
 .select-connect4 {
     width: 40vw;
@@ -106,4 +107,42 @@ h2 {
     border-radius: 15px;
     padding: 4px;
     visibility: hidden;
+}
+
+@media screen and (max-width: 500px){
+    header, footer{
+        background-color: red;
+        height: 15vh;
+    }
+    h1{
+        font-size: 12px;
+    }
+    h2 {
+        margin-top: 25px;
+    }
+    p {
+        font-size: 10px;
+    }
+    .game {
+        width: 40vw;
+
+    }
+    .logo{
+        height: 15vh;
+    }
+    .game-container {
+        width: 100%;
+        margin: auto 0;
+    }
+    .game-square{
+        width: 6vh;
+        height: 6vh;
+    }
+    .game-info {
+        min-width: 0px;
+        width: 25vw;
+    }
+    .reset-button{
+        font-size: 12px;
+    }
 }
