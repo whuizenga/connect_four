@@ -328,7 +328,7 @@ $(function () {
                     var $newLostMessage = $("<h1>");
                     var $newScoreMessage = $("<h1>");
                     $newLostMessage.text("Wrong, you lose!");
-                    $newScoreMessage.text("Score:"+SimonController.arrayThePlayerMustExecute.length);
+                    $newScoreMessage.text("Score: "+(SimonController.arrayThePlayerMustExecute.length-1));
                     $(".game-info").append($newLostMessage);
                     $(".game-info").append($newScoreMessage);
                     this.playerCanClick = false;
