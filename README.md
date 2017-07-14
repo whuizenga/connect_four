@@ -1,6 +1,6 @@
 # Connect Four
 
-##P roject Description
+## Project Description
 Connect Four is a classic table top game for children. The object of the game is to line up four pieces in a row either horizontally, vertically, or diagonally. Players alternate turns placing a chip at the bottom of the stack. The first to make a line of four is the winner!
 
 
