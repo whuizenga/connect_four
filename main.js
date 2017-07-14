@@ -13,6 +13,8 @@ $(function () {
         //Designates which player is taking a turn. 1 if player 1 turn, 2 if player 2 turn.
         turn: 1,
         gameComplete: false,
+        playerOneScore: 0,
+        playerTwoScore: 0,
 
         dropChip: function (column) {
             var columnToDrop = $(column).attr("Gcolumn");
@@ -123,6 +125,11 @@ $(function () {
             $winner.addClass("player");
             $(".game-info").append($winner);
             GameBoard.gameComplete = true;
+            if(player === 1){
+                GameBoard.playerOneScore += 1;
+            } else {
+                GameBoard.playerTwoScore += 1;
+            }
 
             var $resetGame = $("<div>");
             $resetGame.addClass("reset-button");
@@ -181,12 +188,12 @@ $(function () {
     var createBoard = function () {
         var $playerOne = $("<h1>");
         $playerOne.addClass("first-player player");
-        $playerOne.text("Player 1");
+        $playerOne.text("Player 1: " + GameBoard.playerOneScore + " win(s).");
         $(".game-info").append($playerOne);
 
         var $playerTwo = $("<h1>");
         $playerTwo.addClass("second-player player");
-        $playerTwo.text("Player 2");
+        $playerTwo.text("Player 2: " + GameBoard.playerTwoScore + " win(s).");
         $(".game-info").append($playerTwo);
 
         var $gameRules = $("<p>");
