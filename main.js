@@ -244,7 +244,6 @@ $(function () {
             SimonController.arrayThePlayerMustExecute.push(randomColor);
             SimonController.arrayThePlayerHasExecuted.splice(0, SimonController.arrayThePlayerHasExecuted.length);
             console.log(SimonController.arrayThePlayerMustExecute);
-            console.log(SimonController.arrayThePlayerHasExecuted);
             SimonController.displayColors(0);
         },
         displayColors: function (round) {
@@ -273,29 +272,42 @@ $(function () {
                 $(".simon-green").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("green");
+                    $(".simon-green").css("opacity","0.7");
+                    setTimeout(function(){
+                        $(".simon-green").css("opacity","1");
+                        }, 150);
                     SimonController.checkArrays();
                  } });
                 $(".simon-red").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("red");
+                    $(".simon-red").css("opacity","0.7");
+                    setTimeout(function(){
+                        $(".simon-red").css("opacity","1");
+                        }, 150);
                     SimonController.checkArrays();
                  } });
                 $(".simon-yellow").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("yellow");
+                    $(".simon-yellow").css("opacity","0.7");
+                    setTimeout(function(){
+                        $(".simon-yellow").css("opacity","1");
+                        }, 150);
                     SimonController.checkArrays();
                  } });
                 $(".simon-blue").on("click", function (event) {
                     if (!SimonController.simonIsSaying) {
                     SimonController.arrayThePlayerHasExecuted.push("blue");
+                    $(".simon-blue").css("opacity","0.7");
+                    setTimeout(function(){
+                        $(".simon-blue").css("opacity","1");
+                        }, 150);
                     SimonController.checkArrays();
                  } });
             }
         },
         checkArrays: function(){
-            if(SimonController.arrayThePlayerHasExecuted > SimonController.arrayThePlayerMustExecute){
-                console.log("HOW DID YOU GET HERE");
-            }
             for(var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++){
                 if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
                     console.log("DEFEATED!!");
@@ -303,7 +315,8 @@ $(function () {
                 }
             }
             if(SimonController.arrayThePlayerHasExecuted.length === SimonController.arrayThePlayerMustExecute.length){
-                SimonController.simonSays();
+                setTimeout(function(){
+                    SimonController.simonSays();}, 500);
             }
         }
     }
