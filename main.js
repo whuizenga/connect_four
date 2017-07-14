@@ -319,8 +319,11 @@ $(function () {
             for(var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++){
                 if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
                     var $newLostMessage = $("<h1>");
+                    var $newScoreMessage = $("<h1>");
                     $newLostMessage.text("Wrong, you lose!");
+                    $newScoreMessage.text("Score:"+SimonController.arrayThePlayerMustExecute.length);
                     $(".game-info").append($newLostMessage);
+                    $(".game-info").append($newScoreMessage);
                     this.playerCanClick = false;
                     return;
                 }
@@ -334,6 +337,9 @@ $(function () {
                     $(".game-info").append($newMessage);
                     this.playerCanClick = false;
 
+                    if(SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 200){
+                        SimonController.speed = 1000 - ((SimonController.arrayThePlayerMustExecute.length-5)*50);
+                    }
             }
         }
     }
