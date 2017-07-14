@@ -236,6 +236,7 @@ $(function () {
         arrayThePlayerHasExecuted: [],
         speed: 1000,
         simonIsSaying: false,
+        playerCanClick: false,
         startGame: function () {
             console.log("begin the game!!");
             SimonController.simonIsSaying = true;
@@ -270,13 +271,14 @@ $(function () {
                     var $newMessage = $("<h1>");
                     $newMessage.text("Now repeat the sequence.");
                     $(".game-info").append($newMessage);
+                    this.playerCanClick = true;
                 return;
             }
         },
         playerTurn: function () {
             if (!SimonController.simonIsSaying) {
                 $(".simon-green").on("click", function (event) {
-                    if (!SimonController.simonIsSaying) {
+                    if (SimonController.playerCanClick) {
                     SimonController.arrayThePlayerHasExecuted.push("green");
                     $(".simon-green").css("opacity","0.7");
                     setTimeout(function(){
@@ -285,7 +287,7 @@ $(function () {
                     SimonController.checkArrays();
                  } });
                 $(".simon-red").on("click", function (event) {
-                    if (!SimonController.simonIsSaying) {
+                    if (SimonController.playerCanClick) {
                     SimonController.arrayThePlayerHasExecuted.push("red");
                     $(".simon-red").css("opacity","0.7");
                     setTimeout(function(){
@@ -294,7 +296,7 @@ $(function () {
                     SimonController.checkArrays();
                  } });
                 $(".simon-yellow").on("click", function (event) {
-                    if (!SimonController.simonIsSaying) {
+                    if (SimonController.playerCanClick) {
                     SimonController.arrayThePlayerHasExecuted.push("yellow");
                     $(".simon-yellow").css("opacity","0.7");
                     setTimeout(function(){
@@ -303,7 +305,7 @@ $(function () {
                     SimonController.checkArrays();
                  } });
                 $(".simon-blue").on("click", function (event) {
-                    if (!SimonController.simonIsSaying) {
+                    if (SimonController.playerCanClick) {
                     SimonController.arrayThePlayerHasExecuted.push("blue");
                     $(".simon-blue").css("opacity","0.7");
                     setTimeout(function(){
@@ -319,6 +321,7 @@ $(function () {
                     var $newLostMessage = $("<h1>");
                     $newLostMessage.text("Wrong, you lose!");
                     $(".game-info").append($newLostMessage);
+                    this.playerCanClick = false;
                     return;
                 }
             }
@@ -329,6 +332,7 @@ $(function () {
                     var $newMessage = $("<h1>");
                     $newMessage.text("Simon says..");
                     $(".game-info").append($newMessage);
+                    this.playerCanClick = false;
 
             }
         }
