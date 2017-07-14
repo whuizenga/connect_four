@@ -53,9 +53,9 @@ h2 {
     align-content: center;
 }
 .game {
-    width: 40vw;
-    height: 100%;
-    margin: 0 auto;
+    width: 50vw;
+    height: auto;
+    /*margin: 0 auto;*/
 }
 .select-connect4 {
     width: 40vw;
@@ -124,8 +124,8 @@ h2 {
         font-size: 10px;
     }
     .game {
-        width: 40vw;
-
+        width: 50vw;
+        height: 100%;
     }
     .logo{
         height: 15vh;
@@ -144,5 +144,15 @@ h2 {
     }
     .reset-button{
         font-size: 12px;
+    }
+    .master-simon{
+        height: 40vh;
+        width: 40vh;
+        border: 5px solid black;
+        border-radius: 40vh;
+    }
+    .simon-div{
+        height: 20vh;
+        width: 20vh;
     }
 }
