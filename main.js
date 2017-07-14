@@ -247,7 +247,6 @@ $(function () {
         simonIsSaying: false,
         playerCanClick: false,
         startGame: function () {
-            console.log("begin the game!!");
             SimonController.simonIsSaying = true;
             SimonController.simonSays();
         },
@@ -255,7 +254,7 @@ $(function () {
             var randomColor = SimonController.colors[Math.floor(Math.random() * SimonController.colors.length)];
             SimonController.arrayThePlayerMustExecute.push(randomColor);
             SimonController.arrayThePlayerHasExecuted.splice(0, SimonController.arrayThePlayerHasExecuted.length);
-            console.log(SimonController.arrayThePlayerMustExecute);
+            //console.log(SimonController.arrayThePlayerMustExecute);
             SimonController.displayColors(0);
         },
         displayColors: function (round) {
@@ -267,16 +266,15 @@ $(function () {
                 $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.3");
                 setTimeout(function(){
                     $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
-                }, SimonController.speed-100);
+                    }, SimonController.speed-100);
                 setTimeout(function () {
                     index += 1;
                     SimonController.displayColors(index);
                     return;
-                }, SimonController.speed);
+                    }, SimonController.speed);
             } else {
                 $(".game-info").empty();
                 SimonController.simonIsSaying = false;
-                console.log("It is now time for the player to try to repeat the segment")
                     var $newMessage = $("<h1>");
                     $newMessage.text("Now repeat the sequence.");
                     $(".game-info").append($newMessage);
