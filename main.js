@@ -219,10 +219,12 @@ $(function () {
         $(".select-connect4").on("click", function () {
             createBoard();
             $(".game-container").css("display","flex");
+            document.title = "Connect 4";
         });
         $(".select-simon").on("click", function () {
             createSimon();
             $(".game-container").css("display", "flex");
+            document.title = "Simon";
         });
     };
 
