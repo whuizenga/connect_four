@@ -29,3 +29,8 @@ The technologies use to make this app are:
 * CSS
 * JavaScript
 * jQuery
+
+## Future Goals
+Most can be seen on the trello board, but they include:
+* Adding A.I. with checkers
+* Visual Improvements
