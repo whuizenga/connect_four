@@ -125,7 +125,7 @@ $(function () {
             $winner.addClass("player");
             $(".game-info").append($winner);
             GameBoard.gameComplete = true;
-            if(player === 1){
+            if (player === 1) {
                 GameBoard.playerOneScore += 1;
             } else {
                 GameBoard.playerTwoScore += 1;
@@ -182,6 +182,7 @@ $(function () {
             $(".logo").css("visibility", "visible");
             $(".game").css("display", "none");
             $(".welcome").css("display", "none");
+            $("#game-selection").css("visibility", "visible");
         }
     };
 
@@ -225,7 +226,7 @@ $(function () {
     var startHere = function () {
         $(".select-connect4").on("click", function () {
             createBoard();
-            $(".game-container").css("display","flex");
+            $(".game-container").css("display", "flex");
             document.title = "Connect 4";
         });
         $(".select-simon").on("click", function () {
@@ -233,7 +234,9 @@ $(function () {
             $(".game-container").css("display", "flex");
             document.title = "Simon";
         });
-        //createjs.Sound.registerSounds(SimonSound.sounds, SimonSound.audioPath);
+        $("#game-selection").on("click", function () {
+            location.reload();
+        })
     };
 
     startHere();
@@ -266,21 +269,21 @@ $(function () {
             if (index <= SimonController.arrayThePlayerMustExecute.length) {
                 $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.3");
                 SimonController.playSound(index);
-                setTimeout(function(){
-                    $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
-                    }, SimonController.speed-100);
+                setTimeout(function () {
+                    $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.7");
+                }, SimonController.speed - 100);
                 setTimeout(function () {
                     index += 1;
                     SimonController.displayColors(index);
                     return;
-                    }, SimonController.speed);
+                }, SimonController.speed);
             } else {
                 $(".game-info").empty();
                 SimonController.simonIsSaying = false;
-                    var $newMessage = $("<h1>");
-                    $newMessage.text("Now repeat the sequence.");
-                    $(".game-info").append($newMessage);
-                    this.playerCanClick = true;
+                var $newMessage = $("<h1>");
+                $newMessage.text("Now repeat the sequence.");
+                $(".game-info").append($newMessage);
+                this.playerCanClick = true;
                 return;
             }
         },
@@ -288,61 +291,65 @@ $(function () {
             if (!SimonController.simonIsSaying) {
                 $(".simon-green").on("click", function (event) {
                     if (SimonController.playerCanClick) {
-                    SimonController.arrayThePlayerHasExecuted.push("green");
-                    $(".simon-green").css("opacity","0.7");
-                    setTimeout(function(){
-                        $(".simon-green").css("opacity","1");
+                        SimonController.arrayThePlayerHasExecuted.push("green");
+                        $(".simon-green").css("opacity", "0.7");
+                        setTimeout(function () {
+                            $(".simon-green").css("opacity", "1");
                         }, 150);
-                    SimonController.checkArrays();
-                    document.getElementById("greenTone").play();
-                 } });
+                        SimonController.checkArrays();
+                        document.getElementById("greenTone").play();
+                    }
+                });
                 $(".simon-red").on("click", function (event) {
                     if (SimonController.playerCanClick) {
-                    SimonController.arrayThePlayerHasExecuted.push("red");
-                    $(".simon-red").css("opacity","0.7");
-                    setTimeout(function(){
-                        $(".simon-red").css("opacity","1");
+                        SimonController.arrayThePlayerHasExecuted.push("red");
+                        $(".simon-red").css("opacity", "0.7");
+                        setTimeout(function () {
+                            $(".simon-red").css("opacity", "1");
                         }, 150);
-                    SimonController.checkArrays();
-                    document.getElementById("redTone").play();
-                 } });
+                        SimonController.checkArrays();
+                        document.getElementById("redTone").play();
+                    }
+                });
                 $(".simon-yellow").on("click", function (event) {
                     if (SimonController.playerCanClick) {
-                    SimonController.arrayThePlayerHasExecuted.push("yellow");
-                    $(".simon-yellow").css("opacity","0.7");
-                    setTimeout(function(){
-                        $(".simon-yellow").css("opacity","1");
+                        SimonController.arrayThePlayerHasExecuted.push("yellow");
+                        $(".simon-yellow").css("opacity", "0.7");
+                        setTimeout(function () {
+                            $(".simon-yellow").css("opacity", "1");
                         }, 150);
-                    SimonController.checkArrays();
-                    document.getElementById("yellowTone").play();
-                 } });
+                        SimonController.checkArrays();
+                        document.getElementById("yellowTone").play();
+                    }
+                });
                 $(".simon-blue").on("click", function (event) {
                     if (SimonController.playerCanClick) {
-                    SimonController.arrayThePlayerHasExecuted.push("blue");
-                    $(".simon-blue").css("opacity","0.7");
-                    setTimeout(function(){
-                        $(".simon-blue").css("opacity","1");
+                        SimonController.arrayThePlayerHasExecuted.push("blue");
+                        $(".simon-blue").css("opacity", "0.7");
+                        setTimeout(function () {
+                            $(".simon-blue").css("opacity", "1");
                         }, 150);
-                    SimonController.checkArrays();
-                    document.getElementById("blueTone").play();
-                 } });
+                        SimonController.checkArrays();
+                        document.getElementById("blueTone").play();
+                    }
+                });
             }
         },
-        checkArrays: function(){
-            for(var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++){
-                if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
+        checkArrays: function () {
+            for (var i = 0; i < SimonController.arrayThePlayerHasExecuted.length; i++) {
+                if (SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]) {
                     var $newLostMessage = $("<h1>");
                     var $newScoreMessage = $("<h1>");
                     var $newGameButton = $("<div>");
 
                     $newLostMessage.text("Wrong, you lose!");
-                    $newScoreMessage.text("Score: "+(SimonController.arrayThePlayerMustExecute.length-1));
+                    $newScoreMessage.text("Score: " + (SimonController.arrayThePlayerMustExecute.length - 1));
                     $newGameButton.addClass("reset-button");
                     $newGameButton.text("Restart");
                     $newGameButton.on("click", function (event) {
                         SimonController.arrayThePlayerMustExecute = [];
                         SimonController.startGame();
-                     });
+                    });
 
                     $(".game-info").append($newLostMessage);
                     $(".game-info").append($newScoreMessage);
@@ -352,23 +359,24 @@ $(function () {
                     return;
                 }
             }
-            if(SimonController.arrayThePlayerHasExecuted.length === SimonController.arrayThePlayerMustExecute.length){
-                setTimeout(function(){
-                    SimonController.simonSays();}, 500);
-                    $(".game-info").empty();
-                    var $newMessage = $("<h1>");
-                    $newMessage.text("Simon says..");
-                    $(".game-info").append($newMessage);
-                    
-                    this.playerCanClick = false;
+            if (SimonController.arrayThePlayerHasExecuted.length === SimonController.arrayThePlayerMustExecute.length) {
+                setTimeout(function () {
+                    SimonController.simonSays();
+                }, 500);
+                $(".game-info").empty();
+                var $newMessage = $("<h1>");
+                $newMessage.text("Simon says..");
+                $(".game-info").append($newMessage);
 
-                    if(SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 200){
-                        SimonController.speed = 1000 - ((SimonController.arrayThePlayerMustExecute.length-5)*50);
-                    }
+                this.playerCanClick = false;
+
+                if (SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 200) {
+                    SimonController.speed = 1000 - ((SimonController.arrayThePlayerMustExecute.length - 5) * 50);
+                }
             }
         },
-        playSound: function(index){
-            switch(SimonController.arrayThePlayerMustExecute[index]){
+        playSound: function (index) {
+            switch (SimonController.arrayThePlayerMustExecute[index]) {
                 case "red":
                     document.getElementById("redTone").play();
                     break;
@@ -381,7 +389,7 @@ $(function () {
                 case "blue":
                     document.getElementById("blueTone").play();
                     break;
-        }
+            }
         }
     }
 

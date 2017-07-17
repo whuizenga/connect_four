@@ -110,7 +110,19 @@ h2 {
     padding: 4px;
     visibility: hidden;
 }
-
+#game-selection{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 75px;
+    background-color: slategrey;
+    border-color: grey;
+    visibility: hidden;
+}
+#game-selection:hover{
+    background-color: #34A853;
+    border-color: #13772e;
+}
 @media screen and (max-width: 600px){
     header, footer{
         background-color: red;
