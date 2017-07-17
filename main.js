@@ -250,10 +250,12 @@ $(function () {
         speed: 1000,
         simonIsSaying: false,
         playerCanClick: false,
+        
         startGame: function () {
             SimonController.simonIsSaying = true;
             SimonController.simonSays();
         },
+
         simonSays: function () {
             var randomColor = SimonController.colors[Math.floor(Math.random() * SimonController.colors.length)];
             SimonController.arrayThePlayerMustExecute.push(randomColor);
@@ -261,6 +263,7 @@ $(function () {
             //console.log(SimonController.arrayThePlayerMustExecute); //turn this on for cheater mode
             SimonController.displayColors(0);
         },
+
         displayColors: function (round) {
             var index = round;
             if (index > 0) {
