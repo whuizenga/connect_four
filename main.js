@@ -233,6 +233,7 @@ $(function () {
             $(".game-container").css("display", "flex");
             document.title = "Simon";
         });
+        //createjs.Sound.registerSounds(SimonSound.sounds, SimonSound.audioPath);
     };
 
     startHere();
@@ -264,6 +265,7 @@ $(function () {
             }
             if (index <= SimonController.arrayThePlayerMustExecute.length) {
                 $(".simon-" + SimonController.arrayThePlayerMustExecute[index]).css("opacity", "0.3");
+                SimonController.playSound(index);
                 setTimeout(function(){
                     $(".simon-"+SimonController.arrayThePlayerMustExecute[index]).css("opacity","0.7");
                     }, SimonController.speed-100);
@@ -292,6 +294,7 @@ $(function () {
                         $(".simon-green").css("opacity","1");
                         }, 150);
                     SimonController.checkArrays();
+                    document.getElementById("greenTone").play();
                  } });
                 $(".simon-red").on("click", function (event) {
                     if (SimonController.playerCanClick) {
@@ -301,6 +304,7 @@ $(function () {
                         $(".simon-red").css("opacity","1");
                         }, 150);
                     SimonController.checkArrays();
+                    document.getElementById("redTone").play();
                  } });
                 $(".simon-yellow").on("click", function (event) {
                     if (SimonController.playerCanClick) {
@@ -310,6 +314,7 @@ $(function () {
                         $(".simon-yellow").css("opacity","1");
                         }, 150);
                     SimonController.checkArrays();
+                    document.getElementById("yellowTone").play();
                  } });
                 $(".simon-blue").on("click", function (event) {
                     if (SimonController.playerCanClick) {
@@ -319,6 +324,7 @@ $(function () {
                         $(".simon-blue").css("opacity","1");
                         }, 150);
                     SimonController.checkArrays();
+                    document.getElementById("blueTone").play();
                  } });
             }
         },
@@ -348,6 +354,23 @@ $(function () {
                         SimonController.speed = 1000 - ((SimonController.arrayThePlayerMustExecute.length-5)*50);
                     }
             }
+        },
+        playSound: function(index){
+            switch(SimonController.arrayThePlayerMustExecute[index]){
+                case "red":
+                    document.getElementById("redTone").play();
+                    break;
+                case "yellow":
+                    document.getElementById("yellowTone").play();
+                    break;
+                case "green":
+                    document.getElementById("greenTone").play();
+                    break;
+                case "blue":
+                    document.getElementById("blueTone").play();
+                default:
+                    console.log("error in array");
+        }
         }
     }
 
