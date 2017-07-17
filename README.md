@@ -18,6 +18,8 @@ The project was first wireframed on the website Mockingbird:
 
 ![Mockingbird Wireframe](https://github.com/whuizenga/connect_four/blob/master/images/mockup.png)
 
+![Logic Drawing](https://github.com/whuizenga/connect_four/blob/master/images/logic_drawing.jpg)
+
 ## Technologies
 The technologies use to make this app are:
 
