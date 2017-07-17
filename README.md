@@ -18,6 +18,8 @@ The project was first wireframed on the website Mockingbird:
 
 ![Mockingbird Wireframe](https://github.com/whuizenga/connect_four/blob/master/images/mockup.png)
 
+I thought out the logic for checking wins on a white board.
+
 ![Logic Drawing](https://github.com/whuizenga/connect_four/blob/master/images/logic_drawing.jpg)
 
 ## Technologies
