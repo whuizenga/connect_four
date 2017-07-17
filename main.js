@@ -368,8 +368,7 @@ $(function () {
                     break;
                 case "blue":
                     document.getElementById("blueTone").play();
-                default:
-                    console.log("error in array");
+                    break;
         }
         }
     }
