@@ -258,7 +258,7 @@ $(function () {
             var randomColor = SimonController.colors[Math.floor(Math.random() * SimonController.colors.length)];
             SimonController.arrayThePlayerMustExecute.push(randomColor);
             SimonController.arrayThePlayerHasExecuted.splice(0, SimonController.arrayThePlayerHasExecuted.length);
-            //console.log(SimonController.arrayThePlayerMustExecute);
+            //console.log(SimonController.arrayThePlayerMustExecute); //turn this on for cheater mode
             SimonController.displayColors(0);
         },
         displayColors: function (round) {
@@ -370,11 +370,12 @@ $(function () {
 
                 this.playerCanClick = false;
 
-                if (SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 200) {
+                if (SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 300) {
                     SimonController.speed = 1000 - ((SimonController.arrayThePlayerMustExecute.length - 5) * 50);
                 }
             }
         },
+
         playSound: function (index) {
             switch (SimonController.arrayThePlayerMustExecute[index]) {
                 case "red":
@@ -394,14 +395,13 @@ $(function () {
     }
 
     var createSimon = function () {
-        var colors = ["green", "red", "yellow", "blue"];
         ClickHandler.gameVisibility();
-        $simonDiv = $("<div>");
-        $simonDiv.addClass("master-simon");
+        var $simonDiv = $("<div>");
         var $newGameButton = $("<div>");
+        $simonDiv.addClass("master-simon");
         $newGameButton.addClass("reset-button");
         $newGameButton.text("Start");
-        $(".game-info").append($newGameButton);
+        
         $newGameButton.on("click", function (event) {
             SimonController.startGame();
         });
@@ -409,13 +409,17 @@ $(function () {
         for (i = 0; i < 4; i++) {
             $newDiv = $("<div>");
             $newDiv.addClass("simon-div");
-            $newDiv.addClass("simon-" + colors[i]);
-            $newDiv.css("background-color", colors[i]);
+            $newDiv.addClass("simon-" + SimonController.colors[i]);
+            $newDiv.css("background-color", SimonController.colors[i]);
             $simonDiv.append($newDiv);
         }
+
         $("#game-board").append($simonDiv);
+        $(".game-info").append($newGameButton);
+
         $simonDiv.css("flex-wrap", "wrap");
         $(".logo").attr("src", "images/simonlogo2.png");
+
         SimonController.playerTurn();
     };
 });
