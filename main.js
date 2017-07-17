@@ -333,11 +333,22 @@ $(function () {
                 if(SimonController.arrayThePlayerHasExecuted[i] !== SimonController.arrayThePlayerMustExecute[i]){
                     var $newLostMessage = $("<h1>");
                     var $newScoreMessage = $("<h1>");
+                    var $newGameButton = $("<div>");
+
                     $newLostMessage.text("Wrong, you lose!");
                     $newScoreMessage.text("Score: "+(SimonController.arrayThePlayerMustExecute.length-1));
+                    $newGameButton.addClass("reset-button");
+                    $newGameButton.text("Restart");
+                    $newGameButton.on("click", function (event) {
+                        SimonController.arrayThePlayerMustExecute = [];
+                        SimonController.startGame();
+                     });
+
                     $(".game-info").append($newLostMessage);
                     $(".game-info").append($newScoreMessage);
+                    $(".game-info").append($newGameButton);
                     this.playerCanClick = false;
+
                     return;
                 }
             }
@@ -348,6 +359,7 @@ $(function () {
                     var $newMessage = $("<h1>");
                     $newMessage.text("Simon says..");
                     $(".game-info").append($newMessage);
+                    
                     this.playerCanClick = false;
 
                     if(SimonController.arrayThePlayerMustExecute.length > 5 && SimonController.speed > 200){
